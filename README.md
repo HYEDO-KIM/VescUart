@@ -80,8 +80,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 	if(htim->Instance == TIM6) { 
 		getVescValues(&vesc);
-		//setCurrent(set_current);
-		//setDuty(set_current);
+		//setCurrent(&vesc, set_current);
+		//setDuty(&vesc, set_current);
 		//setRPM(&vesc, current);
 	}
 }
