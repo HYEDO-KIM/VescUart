@@ -19,16 +19,10 @@ void shiftRight(uint8_t arr[], int d, int n) {
 	reverse(arr, 0, n);
 }
 
-void initVesc(VescUart *vesc, uint8_t id, uint8_t* dataStructurePtr, size_t dataStructureSize, USART_TypeDef* usart)
+void initVesc(VescUart *vesc, uint8_t id, USART_TypeDef* usart)
 {
 	(vesc)->id = id;
-	(vesc)->dataStructurePtr = dataStructurePtr;
-	(vesc)->dataStructSize = dataStructureSize;
 	(vesc)->usart = usart;
-	(vesc)->nominalPacketCnt = 0;
-	(vesc)->state = HEADER_1;
-	(vesc)->trialCnt = 0;
-	(vesc)->nominalTransmitCnt = 0;
 }
 
 /**
