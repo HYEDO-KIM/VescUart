@@ -36,7 +36,7 @@ void reverse(uint8_t arr[], int start, int end);
 
 void shiftRight(uint8_t arr[], int d, int n);
 
-void initVesc(VescUart *vesc, uint8_t id, uint8_t* dataStructurePtr, size_t dataStructureSize, USART_TypeDef* usart);
+void initVesc(VescUart *vesc, uint8_t id, USART_TypeDef* usart);
 
 bool getVescValues(VescUart *vesc);
 
