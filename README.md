@@ -30,7 +30,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-	initVesc(&vesc, 2, (uint8_t*)&fc, sizeof(FlipperController), UART4);
+	initVesc(&vesc, 1, UART4);
   /* USER CODE END Init */
 
   /* Configure the system clock */
