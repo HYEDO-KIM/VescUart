@@ -63,7 +63,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 	HAL_TIM_Base_Start_IT(&htim6);
-  
+  	
+	/* for who use Uart with LL, not for HAL. */
 	LL_DMA_SetMemoryAddress(DMA1, LL_DMA_STREAM_2, rxBuffer);
 	LL_DMA_SetPeriphAddress(DMA1, LL_DMA_STREAM_2, &UART4->DR);
 	LL_DMA_SetDataLength(DMA1, LL_DMA_STREAM_2, RX_BUFFER_SIZE);
@@ -84,8 +85,10 @@ int main(void)
   /* USER CODE END 3 */
 }
 ```
-Then you have to edit 'void UART4_IRQHandler(void){}', declare extern variable and vesc structure in 'stm32f4xx_it.c file'
-Data received from the vesc should be placed in the packet[] of the vesc structure.
+Then you have to edit 'void UART4_IRQHandler(void)', declare extern variable and vesc structure in 'stm32f4xx_it.c file'\
+Data received from the vesc should be placed in the packet[] of the vesc structure.\
+(only for who use Uart with LL, not for HAL.\
+For Uart with HAL, pushVescpacket() should be performed within the function 'void HAL_UART_RxCpltCallback(UART_HandleTypeDef * *huart*)' in 'main.c')
 
 # stm32f4xx_it.c
 ```c
@@ -115,7 +118,6 @@ void UART4_IRQHandler(void)
 		LL_DMA_EnableStream(DMA1, LL_DMA_STREAM_2);
 
 		LL_USART_EnableDMAReq_RX(UART4);
-		cnt++;
 	}
 
 	if(LL_USART_IsActiveFlag_ORE(UART4)) LL_USART_ClearFlag_ORE(UART4);
