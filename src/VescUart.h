@@ -24,18 +24,8 @@ struct dataPackage {
 
 typedef struct {
 	uint8_t id;
-	size_t dataStructSize;
-	uint8_t *dataStructurePtr;
 	USART_TypeDef* usart;
-	int nominalPacketCnt;
-	int state;
-	uint8_t packetBuffer[RX_BUFFER_SIZE];
 	int length;
-	int trialCnt;
-	unsigned short expectedCRC, actualCRC;
-	uint8_t failByte;
-	int packetBufferSize;
-	int nominalTransmitCnt;
 	uint8_t packet[300];
 	int test;
 
