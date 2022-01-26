@@ -10,6 +10,7 @@ SolidGeek (https://github.com/SolidGeek/VescUart).
 
 To use the library you will have use initVesc(); and set the UART communcation.
 
+# main.c
 ```c
 #include "../../VescUart/src/crc.h"
 #include "../../VescUart/src/crc.cpp"
@@ -83,9 +84,10 @@ int main(void)
   /* USER CODE END 3 */
 }
 ```
-Then you have to edit 'void UART4_IRQHandler(void){}', declare extern variable and vesc structure in 'stm32f4xx_it.c file'\
+Then you have to edit 'void UART4_IRQHandler(void){}', declare extern variable and vesc structure in 'stm32f4xx_it.c file'
 Data received from the vesc should be placed in the packet[] of the vesc structure.
 
+# stm32f4xx_it.c
 ```c
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
@@ -106,7 +108,6 @@ void UART4_IRQHandler(void)
 		int len = RX_BUFFER_SIZE - LL_DMA_GetDataLength(DMA1, LL_DMA_STREAM_2);
 		vesc.length=len;
 		pushVescPacket(&vesc, rxBuffer, len);
-		//pushPacket(&serialLine, rxBuffer, len);
 
 		LL_USART_ClearFlag_IDLE(UART4);
 		LL_DMA_DisableStream(DMA1, LL_DMA_STREAM_2);
@@ -131,6 +132,7 @@ You can now safely use the functions and change the values.
 
 Getting VESC telemetry is easy:
 
+# main.c
 ```c
 /* USER CODE BEGIN 4 */
 
