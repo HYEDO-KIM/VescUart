@@ -1,4 +1,4 @@
-# VescUart-stm32-C-
+# VescUart for stm32CubeIDE -C-
 
 stm32CubeIDE C library for interfacing with a VESC over UART. This library is based upon the library written by RollingGecko (https://github.com/RollingGecko/VescUartControl) and 
 SolidGeek (https://github.com/SolidGeek/VescUart).
