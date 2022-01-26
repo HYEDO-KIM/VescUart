@@ -68,7 +68,7 @@ int main(void)
 }
 ```
 
-You can now safely use the functions and change the values of the class. 
+You can now safely use the functions and change the values. 
 
 Getting VESC telemetry is easy:
 
@@ -77,18 +77,11 @@ Getting VESC telemetry is easy:
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
-
-	if(htim->Instance == TIM6) { //20ms
-		cnt_main++;
-		if(cnt_main>50)
-		{
-			getVescValues(&vesc);
-			//setCurrent(set_current);
-			//setDuty(set_current);
-			//setRPM(&vesc, current);
-			cnt_main=0;
-
-		}
+	if(htim->Instance == TIM6) { 
+		getVescValues(&vesc);
+		//setCurrent(set_current);
+		//setDuty(set_current);
+		//setRPM(&vesc, current);
 	}
 }
 
